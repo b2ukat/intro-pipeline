@@ -1,9 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    label 'jdk8'
+  }
   stages {
-    stage('Say Hello ') {
+    stage('Say Hello') {
       steps {
-        echo "${params.Name}"
+        echo "Hello ${params.Name}!"
         sh 'java -version'
         echo "${TEST_USER_USR}"
         echo "${TEST_USER_PSW}"
@@ -11,7 +13,7 @@ pipeline {
     }
   }
   environment {
-    MY_NAME = 'Kamal'
+    MY_NAME = 'Mary'
     TEST_USER = credentials('test-user')
   }
   parameters {
